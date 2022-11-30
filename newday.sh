@@ -7,7 +7,7 @@ cd day$1
 touch day$1.py
 touch day$1_input.txt
 touch day$1_testinput.txt
-touch README.md
+echo "# Advent of Code 2022 Day$1" > README.md
 git add .
 git commit -m "Add new day $1"
 git push --set-upstream origin day$1
