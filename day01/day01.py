@@ -11,15 +11,12 @@ for line in lines:
        elfs.append(0) # start out with a 0 value for the new elf
     else:
         elfs[index]+= int(line.rstrip())
-max=0
-for elf in elfs:
-    if elf > max:
-        max=elf
 
-#sort the list in descending order, will make the max value appear in index 0
+#sort the list in descending order
 elfs.sort(reverse=True)
+
 # Step 1 - The max calorie count for an elf
-print(elfs[0])
+print(max(elfs))
 
 # Step 2 - The sum of the max calorie count for the top three elfs.
-print(elfs[2]+elfs[1]+elfs[0])
+print(sum(elfs[0:3]))
