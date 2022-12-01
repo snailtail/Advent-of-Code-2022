@@ -3,3 +3,6 @@
 
 I will attempt to solve as many pussles as possible,  
 this year using :snake: Python.
+
+- [Day 1](./day01) - Day 1: Calorie Counting -  
+Quite an easy start, made some touch-ups to the code after completing the challenge.
