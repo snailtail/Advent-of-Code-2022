@@ -3,5 +3,5 @@
 
 For this years challenge I will attempt to solve as many pussles as possible using Python 3 :snake:
 
-- [Day 1](./day01) - Day 1: Calorie Counting -  
+- [- Day 1: Calorie Counting -](./day01)  
 Quite an easy start. Made a few touch-ups to the code after completing the challenge.
