@@ -11,3 +11,6 @@ Not very complicated, I didn't have to keep track of player 1 - but as usual I'm
 
 - [- Day 3: Rucksack Reorganization -](./day03)
 A fun little exercise, searching for characters apperaring in multiple strings or parts of strings.
+
+- [- Day 4: Camp Cleanup -](./day04)
+Today we had to check for overlap in ranges. Using sets in Python made things very easy, due to the intersect functionality.
