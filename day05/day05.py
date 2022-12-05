@@ -1,8 +1,8 @@
 import re
 from copy import deepcopy
 def process(): 
-    with open('day05/day05_input.txt') as fromstack:
-        schema, crates = fromstack.read().split('\n\n')
+    with open('day05/day05_input.txt') as f:
+        schema, crates = f.read().split('\n\n')
         schema = schema.split('\n')
         crates = crates.split('\n')
 
