@@ -43,17 +43,11 @@ def process():
         stacks_step2[tostack] += stacks_step2[fromstack][-count:]
         stacks_step2[fromstack] = stacks_step2[fromstack][:-count]
 
-    print("Step 1:")
-    for n in order:
-        print(stacks_step1[n][-1], end='')
-    print()
-
-    print("Step 2:")
-    for n in order:
-        print(stacks_step2[n][-1], end='')
-    print()
-    
-    
+    step1="".join([stacks_step1[n][-1] for n in order])
+    print(f"Step 1: {step1}")
+    step2="".join([stacks_step2[n][-1] for n in order])
+    print(f"Step 2: {step2}")
+  
     
 def main():
     process()
