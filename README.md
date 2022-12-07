@@ -20,3 +20,6 @@ This one was a bit trickier, but after I discovered that Lists in Python could b
 
 - [ - Day 6: Tuning Trouble -](./day06)
 Parsing a string looking for the first chunk consisting of unique characters. Using the set functionality to check for uniqueness.
+
+- [ - Day 7: No Space Left On Device - ](./day07)
+Tricky...! But after finding the defaultdict which does not raise keyerrors, and instead sets a defaultvalue, it became smoother. Also the stack-like functionality again. Parsing "commands", building and storing the paths and calculating their sizes. Parsing the input was also a bit on the tricky side today.
