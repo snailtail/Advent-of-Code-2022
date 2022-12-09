@@ -1,11 +1,8 @@
 from rope import PlanckRope
 
-with open('day09/day09_input.txt','r') as f:
-    steps = [l.rstrip() for l in f.readlines()]
+with open("day09/day09_input.txt",'r') as f:
+    moves = [m.split() for m in f.readlines()]
 
-rope = PlanckRope(0,0)
-
-for step in steps:
-    rope.Move(step)
-
-print(rope.tailPositions)
+rope = PlanckRope()
+step1 = rope.count_visited_coordinates(moves)
+print(f"Step 1: {step1}")
