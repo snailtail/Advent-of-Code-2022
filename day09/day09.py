@@ -6,3 +6,6 @@ with open("day09/day09_input.txt",'r') as f:
 rope = PlanckRope()
 step1 = rope.count_visited_coordinates(moves)
 print(f"Step 1: {step1}")
+
+step2 = rope.count_visited_coordinates(moves, 9)
+print(f"Step 2: {step2}")
