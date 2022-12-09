@@ -1,120 +1,60 @@
-import re
 class PlanckRope():
+
+    def __init__(self):
+        pass
+    
+    def move(self, cur_position, direction):
+        match direction.upper():
+            case "R":
+                return (cur_position[0] + 1, cur_position[1])
+            case "L":
+                return (cur_position[0] - 1, cur_position[1])
+            case "U":
+                return (cur_position[0], cur_position[1] + 1)
+            case "D":
+                return (cur_position[0], cur_position[1] - 1)
         
-        def coordinate(self):
-            return f"{self.x}:{self.y}"
+
+    def move_knot(self, knot, neighbor):
+        knot_x, knot_y = knot
+        neighbor_x, neighbor_y = neighbor
+        new_tail = knot
+
+        tail_needsmove = abs(knot_x - neighbor_x) > 1 or abs(knot_y - neighbor_y) > 1
+
+        if not tail_needsmove:
+            return knot
+
+        if neighbor_x > knot_x:
+            new_tail = self.move(new_tail, "R")
+        elif neighbor_x < knot_x:
+            new_tail = self.move(new_tail, "L")
+
+        if neighbor_y > knot_y:
+            new_tail = self.move(new_tail, "U")
+        elif neighbor_y < knot_y:
+            new_tail = self.move(new_tail, "D")
+
+        return new_tail
         
 
-        def __init__(self, X=0, Y=0):
-            self.visitedCoordinates = set()
-            self.originCoordinate=""
-            self.x = X
-            self.y = Y
-            self.originCoordinate = f"{self.x}:{self.y}"
-            self.tailCoordinate = f"{self.x}:{self.y}"
-            self.tailPositions = 1 # the starting point counts as wells
+    def count_visited_coordinates(self, moves, tail_length=1):
+        start_coordinate = (0, 0)
+        visited_coordinates = set([start_coordinate])
 
-        #region move_around
+        head = start_coordinate
+        tail = [start_coordinate] * tail_length
 
-        def MoveUp(self, Steps):
-            for i  in range(Steps):
-                self.y+=1
-                self.visitedCoordinates.add(f"{self.x}:{self.y}")
-                self.MoveTail()
-        
-        def MoveDown(self, Steps):
-            for i  in range(Steps):
-                self.y-=1
-                self.visitedCoordinates.add(f"{self.x}:{self.y}")
-                self.MoveTail()
+        for (direction, count) in moves:
+            for _ in range(int(count)):
+                head = self.move(head, direction)
 
-        def MoveRight(self, Steps):
-            for i  in range(Steps):
-                self.x+=1
-                self.visitedCoordinates.add(f"{self.x}:{self.y}")
-                self.MoveTail()
+                prev = head
+                # for each knot in the rest of the body/tail, follow the nearest "previous knot"
+                for i, knot in enumerate(tail):
+                    tail[i] = self.move_knot(knot, prev)
+                    prev = tail[i]
 
-        def MoveLeft(self, Steps):
-            for i  in range(Steps):
-                self.x-=1
-                self.visitedCoordinates.add(f"{self.x}:{self.y}")
-                self.MoveTail()
+                visited_coordinates.add(tail[-1])
 
-
-        def MoveTail(self):
-            if self.CalculateTailManhattanDistance() > 1:
-                # we need to move the tail towards the head
-                tailX = int(self.tailCoordinate.split(':')[0])
-                tailY = int(self.tailCoordinate.split(':')[1])
-                if tailX < self.x:
-                    tailX+=1
-                    #self.tailPositions+=1
-                if tailY < self.y:
-                    tailY+=1
-                    #self.tailPositions+=1
-                if tailX > self.x:
-                    tailX-=1
-                    #self.tailPositions+=1
-                if tailY > self.y:
-                    tailY-=1
-                    #self.tailPositions+=1
-                    
-                self.tailCoordinate = f"{self.x}:{self.y}"
-                self.tailPositions+=1
-                
-        #endregion
-
-        #region parse input
-        def Move(self, MoveInstruction):
-            if type(MoveInstruction)==list:
-                moves = MoveInstruction
-            else:
-                moves = [MoveInstruction]
-            
-            for move in moves:
-                direction = '?'
-                steps = 0
-                match = re.match(r"(\D+)(\d+)", move.lower())
-                if match != None:
-                    direction = match[1].rstrip()
-                    steps = int(match[2])
-
-                
-                if direction in ["n","u","up","north"]:
-                    direction = "n"
-                elif direction in ["s","d","down","south"]:
-                    direction = "s"
-                elif direction in ["e","r","east","right"]:
-                    direction = "e"
-                elif direction in ["w","l","west","left"]:
-                    direction = "w"
-                
-                self.DoMove(direction, steps)
-
-        def DoMove(self, Direction, Steps):
-            
-                if Direction=="?":
-                    print("Unknown Direction...!")
-                elif Direction=="n":
-                    self.MoveUp(Steps)
-                elif Direction=="s":
-                    self.MoveDown(Steps)
-                elif Direction=="e":
-                    self.MoveRight(Steps)
-                elif Direction=="w":
-                    self.MoveLeft(Steps)
-                    
-        def CalculateManhattanDistance(self, coord):
-            coordData = coord.split(":")
-            retX = abs(int(coordData[0]))
-            retY = abs(int(coordData[1]))
-            return retX + retY
-        
-        def CalculateTailManhattanDistance(self):
-            coordData=self.coordinate().split(":")
-            tailData = self.tailCoordinate.split(":")
-            retX = abs(int(coordData[0])-int(tailData[0]))
-            retY = abs(int(coordData[1])-int(tailData[1]))
-            
-            return retX + retY
-        #end
+        return len(visited_coordinates)
