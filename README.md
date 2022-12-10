@@ -28,4 +28,8 @@ Tricky...!  Parsing "commands", building and storing the paths and calculating t
 Basically just traversing a grid and counting values above a threshold. But oh my goodness how I struggled with off-by-one errors on this one...
 
 - [- Day9: Day 9: Rope Bridge -](./day09)
-Keeping track of knots on a rope. For some reason this is one of those puzzles that seems quite easy, but I struggle immensely with... Step 1 solved, and now realizing that Step 2 needs a bigger rewrite due to the twist I did not foresee. Longer rope...
+Keeping track of knots on a rope. For some reason this is one of those puzzles that seems quite easy, but I struggle immensely with... Painful to solve for some reason. Had to rewrite everything for step 2. >.<
+
+- [- Day 10: Cathode-Ray Tube -](./day10)
+A lot of fun! Seems easier today than yesterday... At least for me.
+Simulating a cathode ray tube, from a list of instructions.
