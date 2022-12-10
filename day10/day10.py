@@ -46,14 +46,11 @@ class CathodeRayTube():
         """
         Does nothing for one cycle.
 
-        This method increments the `cycles` attribute by 1 and calls the `check` method to update the state of the CRT.
-
         Example:
             tube = CathodeRayTube()
             tube.noop()
         """
         self.cycles += 1
-        self.check()
 
     def addV(self, val):
         """
@@ -61,7 +58,7 @@ class CathodeRayTube():
 
         This method takes in an integer representing the value to be added to the X-coordinate of the CRT.
         This method increments the `cycles` attribute by 2, adds the given value to the `X` attribute,
-        and calls the `check` method to update the state of the CRT.
+        and calls the `check` method in between cycleupdates, to update the state of the CRT.
 
         Example:
             tube = CathodeRayTube()
@@ -71,7 +68,6 @@ class CathodeRayTube():
         self.check()
         self.cycles += 1
         self.X += val
-        self.check()
 
     def check(self):
         """
