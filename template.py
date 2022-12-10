@@ -1,5 +1,10 @@
 from aoc import inpututil as iu
+import os
+
+file=os.path.basename(__file__).replace('.py','')
 util = iu()
-data = util.GetContents('10')
-lines = util.GetLines('10')
+
+#data = util.GetContents(file, test=True)
+#lines = util.GetLines(file, test=True)
+#iarr = util.GetIntArray(file, test=True)
 

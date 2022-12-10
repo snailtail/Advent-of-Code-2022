@@ -24,7 +24,16 @@ class inpututil():
         
         return data
 
+    def GetIntArray(self, day, test=False, splitat=','):
+        if test:
+            filename=f"{day}test.dat"
+        else:
+            filename=f"{day}.dat"
+        
+        with open(filename,'r') as f:
+            data = list(map(int, f.read().rstrip().split(splitat)))
 
+        return data
 
 class FourWayMap():
         
