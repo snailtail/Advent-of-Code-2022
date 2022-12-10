@@ -1,4 +1,4 @@
-with open('day06/day06_input.txt','r') as f:
+with open('06.dat','r') as f:
     data = f.read().rstrip()
 
 

@@ -1,3 +1,5 @@
+from aoc import inpututil as iu
+
 def Process(line):
     # Uses set intersect to check if one set contains the other - fully for step 1 and partially for step 2.
     step1=False
@@ -26,7 +28,8 @@ def Process(line):
     return (step1,step2)
 
 def main():
-    data = [line.rstrip() for line in open('./day04/day04_input.txt','r')]
+    util = iu()
+    data = util.GetLines('04')
     step1_count=0
     step2_count=0
     for line in data:

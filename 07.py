@@ -6,7 +6,7 @@ def extract_sizes(command):
     sizes = [int(x) for x in re.findall(pattern, command)]
     return sizes
 
-with open('day07/day07_input.txt', 'r') as file:
+with open('07.dat', 'r') as file:
     lines = file.read()
 
 # Using defaultdict for ease of use - if the key does not exist, we will not get a key-error, but instead add a new item with default value 0.

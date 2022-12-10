@@ -1,4 +1,4 @@
-with open('day01/day01_input.txt', 'r') as f:
+with open('01.dat', 'r') as f:
     calories = f.read()
 
 # List will store the sums of each elfs calories

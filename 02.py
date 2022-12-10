@@ -33,7 +33,7 @@ def rps2(player1, player2):
 
 
 def main():
-    with open('day02/day02_input.txt', 'r') as f:
+    with open('02.dat', 'r') as f:
         moves = f.readlines()
     # p1_tot=0
     step1 = 0

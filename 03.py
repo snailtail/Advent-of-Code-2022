@@ -29,7 +29,7 @@ def getValue(n):
 
 
 def main():
-    data = [line.rstrip() for line in open('./day03/day03_input.txt','r')]
+    data = [line.rstrip() for line in open('03.dat','r')]
     step1_sum=0
     for item in data:
         step1_sum += getValue(pairs(item))

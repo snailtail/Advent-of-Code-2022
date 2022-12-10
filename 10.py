@@ -106,7 +106,7 @@ class CathodeRayTube():
             print("".join(line))
 
 
-with open('day10/day10_input.txt', 'r') as f:
+with open('10.dat', 'r') as f:
     commands = [l.rstrip() for l in f.readlines()]
 
 tube = CathodeRayTube()
