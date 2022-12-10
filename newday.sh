@@ -1,14 +1,11 @@
 #!/bin/sh
 
-#git checkout main
-#git pull -r
-#git checkout -b day$1
+git checkout main
+git pull -r
+git checkout -b day$1
 
-# mkdir day$1
 python3 ./getinput.py $1
-#cd day$1
 cp template.py $1.py
-echo "data = iu.GetContents('$1')" >> $1.py
 touch $1test.dat
 echo "# :christmas_tree: Advent of Code 2022 Day$1 :christmas_tree:" > $1.md
 git add .
