@@ -1,1 +1,2 @@
-import aoc
+from aoc import inpututil as iu
+
