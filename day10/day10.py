@@ -90,23 +90,8 @@ class CathodeRayTube():
             signalstrength = self.cycles * self.X
             self.sum += signalstrength
 
-        if -1 < self.cycles < 40:
-            self.drawsprite(0)
-
-        if 40 < self.cycles < 80:
-            self.drawsprite(1)
-
-        if 80 < self.cycles < 120:
-            self.drawsprite(2)
-
-        if 120 < self.cycles < 160:
-            self.drawsprite(3)
-
-        if 160 < self.cycles < 200:
-            self.drawsprite(4)
-
-        if 200 < self.cycles < 240:
-            self.drawsprite(5)
+        line = self.cycles // 40
+        self.drawsprite(line)
 
         if self.cycles == 220:
             print(f"Step 1: {self.sum}")
