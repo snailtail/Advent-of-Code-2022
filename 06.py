@@ -1,4 +1,4 @@
-with open('06.dat','r') as f:
+with open('./data/06.dat','r') as f:
     data = f.read().rstrip()
 
 

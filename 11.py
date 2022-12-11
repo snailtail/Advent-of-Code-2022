@@ -14,7 +14,6 @@ class Monkey():
         self.truerecipient = re.findall(r"\d+", input[4])[0]
         self.falserecipient = re.findall(r"\d+", input[5])[0]
         self.inspections = 0
-        print(self.id)
     
     def do_operation(self, worrylevel, lcm=1):
         value1 = int(self.operation[3].replace('old',str(worrylevel)))

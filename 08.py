@@ -94,7 +94,7 @@ def step2(grid):
     print(f"Step 2: {best_treescore}")
 
 def main():
-    with open('08.dat', 'r') as f:
+    with open('./data/08.dat', 'r') as f:
         data = [[int(height) for height in str.strip(l)] for l in f.readlines()]
     step1(data)
     step2(data)

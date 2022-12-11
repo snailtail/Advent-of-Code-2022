@@ -1,6 +1,6 @@
 from rope import PlanckRope
 
-with open("09.dat",'r') as f:
+with open("./data/09.dat",'r') as f:
     moves = [m.split() for m in f.readlines()]
 
 rope = PlanckRope()

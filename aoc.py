@@ -4,9 +4,9 @@ class inpututil():
     
     def GetLines(self,day, test=False):
         if test:
-            filename=f"{day}test.dat"
+            filename=f"./data/{day}test.dat"
         else:
-            filename=f"{day}.dat"
+            filename=f"./data/{day}.dat"
             
         with open(filename,'r') as f:
             lines = [l.rstrip() for l in f.readlines()]
@@ -15,9 +15,9 @@ class inpututil():
 
     def GetContents(self, day, test=False):
         if test:
-            filename=f"{day}test.dat"
+            filename=f"./data/{day}test.dat"
         else:
-            filename=f"{day}.dat"
+            filename=f"./data/{day}.dat"
             
         with open(filename,'r') as f:
             data = f.read().rstrip()
@@ -26,9 +26,9 @@ class inpututil():
 
     def GetIntArray(self, day, test=False, splitat=','):
         if test:
-            filename=f"{day}test.dat"
+            filename=f"./data/{day}test.dat"
         else:
-            filename=f"{day}.dat"
+            filename=f"./data/{day}.dat"
         
         with open(filename,'r') as f:
             data = list(map(int, f.read().rstrip().split(splitat)))

@@ -1,7 +1,7 @@
 import re
 from copy import deepcopy
 def process(): 
-    with open('05.dat') as f:
+    with open('./data/05.dat') as f:
         schema, crates = f.read().split('\n\n')
         schema = schema.split('\n')
         crates = crates.split('\n')

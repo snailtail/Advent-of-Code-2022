@@ -1,3 +1,4 @@
+from aoc import inpututil as iu
 class CathodeRayTube():
     """
     A class representing a Cathode Ray Tube.
@@ -105,9 +106,8 @@ class CathodeRayTube():
         for line in self.lines:
             print("".join(line))
 
-
-with open('10.dat', 'r') as f:
-    commands = [l.rstrip() for l in f.readlines()]
+util = iu()
+commands = util.GetLines('10',False)
 
 tube = CathodeRayTube()
 
