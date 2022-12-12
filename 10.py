@@ -1,4 +1,5 @@
 from aoc import inpututil as iu
+from advent_of_code_ocr import convert_array_6
 class CathodeRayTube():
     """
     A class representing a Cathode Ray Tube.
@@ -103,8 +104,7 @@ class CathodeRayTube():
             self.lines[line][currpos] = 'X'
 
     def displayPicture(self):
-        for line in self.lines:
-            print("".join(line))
+        print(convert_array_6(self.lines, fill_pixel='X', empty_pixel='.'))
 
 util = iu()
 commands = util.GetLines('10',False)
@@ -115,5 +115,5 @@ for command in commands:
     command = command.split()
     tube.run(command)
 
-
+print("Step 2: ", end="")
 tube.displayPicture()
