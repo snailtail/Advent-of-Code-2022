@@ -39,4 +39,4 @@ Holy mathematics Batman! Step 1 was mainly about getting on par with the parsing
 Overworked the solution a bit, with the Monkey class, but at least I didn't start out too "cheap" ending up having to rewrite everything for step 2 this time. :stuck_out_tongue_closed_eyes:
 
 - [- Day 12: Hill Climbing Algorithm -](./12.md)
-So I woke up to Graphs this morning, and wanted to go straight back to bed. But a bit of googling, and slowly remembering day 15 of last year I convinced myself to go ahead anyway. Last year I use Dijkstra's algorithm, but BFS seems to be a viable option - So let's implement Breadth First Search in Python then eh?
+So I woke up to Graphs this morning, and wanted to go straight back to bed. But a bit of googling, and slowly remembering day 15 of last year I convinced myself to go ahead anyway. Last year I used Dijkstra's algorithm, but BFS seems to be a viable option - So let's implement Breadth First Search in Python then eh?
