@@ -24,6 +24,17 @@ class inpututil():
         
         return data
 
+    def GetCharMap(self, day, test=False):
+        if test:
+            filename=f"./data/{day}test.dat"
+        else:
+            filename=f"./data/{day}.dat"
+            
+        with open(filename,'r') as f:
+            data = [[c for c in line.strip()] for line in f.readlines()]
+        
+        return data
+
     def GetIntArray(self, day, test=False, splitat=','):
         if test:
             filename=f"./data/{day}test.dat"
