@@ -37,3 +37,6 @@ Simulating a cathode ray tube, from a list of instructions.
 - [- Day 11: Monkey in the Middle -](./11.md)
 Holy mathematics Batman! Step 1 was mainly about getting on par with the parsing of the input. But step 2 was a nightmare which required research in the mathematical field, since I don't have an infinite amount of time, and/or five trillion petabytes of RAM. LCM to the rescue after some serious googling.
 Overworked the solution a bit, with the Monkey class, but at least I didn't start out too "cheap" ending up having to rewrite everything for step 2 this time. :stuck_out_tongue_closed_eyes:
+
+- [- Day 12: Hill Climbing Algorithm -](./12.md)
+So I woke up to Graphs this morning, and wanted to go straight back to bed. But a bit of googling, and slowly remembering day 15 of last year I convinced myself to go ahead anyway. So let's implement Breadth First Search in Python then eh?
