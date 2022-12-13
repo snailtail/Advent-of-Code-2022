@@ -43,5 +43,7 @@ So I woke up to Graphs this morning, and wanted to go straight back to bed. But 
 
 - [- Day 13: Distress Signal -](./13.md)
 Holy snailfish dejavu Batman! Oh no... Not this again, I gave up on this last year. But as the day passes I start thinking that perhaps Pythons `eval()` is my friend? Going to try for step 1 at least.
-`eval()` really helped to parse the input into something manageable! Step 1 was challenging to get the logic correct. In the end it became some morphed recusion thingy of a method that performs the actual comparisons.
+`eval()` really helped to parse the input into something manageable! For step 1 it was challenging to get the comparison logic correct. In the end it became some morphed recusion thingy of a method that performs the actual comparisons.
 For step 2 it gets a lot worse, how the heck do you sort that entire list...? I wish I had some sort of way (hehe, pun intended) to use the `compare()` method for sorting..!
+The documentation for `sorted()` actually pointed me towards the cmp_to_key function from functools which took me a while to figure out how to implement, since I'm not used to the whole lamdba thing yet.
+In the end I spent a lot of time forgetting that multiplying a value by 0 doesn't do much for increasing the value... But after actually __using my eyes__ I found that error and it seems to work now both for the test input and for the actual puzzle input.
