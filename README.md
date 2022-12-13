@@ -40,3 +40,6 @@ Overworked the solution a bit, with the Monkey class, but at least I didn't star
 
 - [- Day 12: Hill Climbing Algorithm -](./12.md)
 So I woke up to Graphs this morning, and wanted to go straight back to bed. But a bit of googling, and slowly remembering day 15 of last year I convinced myself to go ahead anyway. Last year I used Dijkstra's algorithm, but BFS seems to be a viable option - So let's implement Breadth First Search in Python then eh?
+
+- [- Day 13: Distress Signal -](./13.md)
+Holy snailfish dejavu Batman! Oh no... Not this again, I gave up on this last year. But as the day passes I start thinking that perhaps Pythons `eval()` is my friend? Going to try for step 1 at least.
