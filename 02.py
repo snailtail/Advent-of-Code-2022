@@ -1,5 +1,5 @@
 
-def rps(player1, player2):
+def rps(player1: str, player2: str):
     p1_score = 0
     p2_score = 0
 
@@ -18,7 +18,7 @@ def rps(player1, player2):
     return (p1_score, p2_score)
 
 
-def rps2(player1, player2):
+def rps2(player1: str, player2: str):
     WINNING_MOVES = {'A': 'Y', 'B': 'Z', 'C': 'X'}
     DRAW_MOVES = {'A': 'X', 'B': 'Y', 'C': 'Z'}
     LOSS_MOVES = {'A': 'Z', 'B': 'X', 'C': 'Y'}
