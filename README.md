@@ -47,3 +47,7 @@ Holy snailfish dejavu Batman! Oh no... Not this again, I gave up on this last ye
 For step 2 it gets a lot worse, how the heck do you sort that entire list...? I wish I had some sort of way (hehe, pun intended) to use the `compare()` method for sorting..!
 The documentation for `sorted()` actually pointed me towards the cmp_to_key function from functools which took me a while to figure out how to implement, since I'm not used to the whole lamdba thing yet.
 In the end I spent a lot of time forgetting that multiplying a value by 0 doesn't do much for increasing the value... But after actually __using my eyes__ I found that error and it seems to work now both for the test input and for the actual puzzle input.
+
+- [- Day 14: Regolith Reservoir -](./14.md)
+Fun puzzle! Keep track of falling sand. Step 1 until the first grain of sand falls outside of the rock paths.  
+Step 2 might need some reworking of my code. But it will have to wait a while. Busy with moving to a new apartment, and some other stuff... :)
