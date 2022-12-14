@@ -8,6 +8,8 @@ class Cavesystem:
         for line in rockpointdata:
             # Get the different points for the paths of rock
             self.addpath(line.split(' -> '))
+        self.getmaprange()
+
     
     def addpath(self, points: list):
         lastx, lasty = -1, -1
@@ -41,16 +43,29 @@ class Cavesystem:
                     self.points[directions[dir]] = "+"
                     self.points[curpoint] = "."
                     curpoint=directions[dir]
-                    self.getmaprange()
-                    print("-"*10)
+                    #self.printmap()
+                    #print("-"*10)
                     moved = True
                     break
                 # no direction was possible to move in
             falling = moved
-        self.points[curpoint] = "o"
-        self.getmaprange()
-        print("-"*10)
+            x,y = curpoint
             
+            # Check if we're outside the map area
+            if x < self.minX or x > self.maxX or y > self.maxY:
+                return False
+        self.points[curpoint] = "o"
+        #self.printmap()
+        #print("-"*10)
+        return True
+            
+    def printmap(self):
+        for y in range(0, self.maxY+1):
+            line=""
+            for x in range(self.minX,self.maxX+1):
+                p=(x,y)
+                line += self.points[p]
+            print(line)
 
     def getmaprange(self):
         coords = list(self.points.keys())
@@ -69,14 +84,10 @@ class Cavesystem:
             if y > maxy:
                 maxy = y
         
-        #print((minx,miny),(maxx,maxy))
-
-        for y in range(0, maxy+1):
-            line=""
-            for x in range(minx,maxx+1):
-                p=(x,y)
-                line += self.points[p]
-            print(line)
+        self.minX = minx
+        self.minY = miny
+        self.maxX = maxx
+        self.maxY = maxy
             
 
 
@@ -85,13 +96,15 @@ util = iu()
 
 
 
-lines = util.GetLines(file, test=True)
+lines = util.GetLines(file, test=False)
 cave = Cavesystem(lines)
 
 
-print(cave.points)
-cave.getmaprange()
-print("-"*10)
-cave.addsand()
-cave.addsand()
+#print(cave.points)
+#cave.printmap()
+#print("-"*10)
+sandadded = 0
+while(cave.addsand()):
+    sandadded += 1    
+print(sandadded)
 
