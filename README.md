@@ -51,3 +51,6 @@ In the end I spent a lot of time forgetting that multiplying a value by 0 doesn'
 - [- Day 14: Regolith Reservoir -](./14.md)
 Fun puzzle! Keep track of falling sand. Step 1 until the first grain of sand falls outside of the rock paths.  
 Turns out Step 2 actually only needed an infinite rock floor below the rock paths, and then the rest was almost automatic.
+
+- [- Day 15: Beacon Exclusion Zone -](./15.md)
+Big grid. Step 1 was my lunch time exercise today, and was possible to do via "brute force". Step 2 however will need rethinking. There should be a better way.
