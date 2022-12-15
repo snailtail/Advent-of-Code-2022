@@ -1,4 +1,5 @@
 from collections import defaultdict
+import time
 from aoc import inpututil as iu
 import os
 
@@ -9,6 +10,7 @@ class Cavesystem:
             # Get the different points for the paths of rock
             self.addpath(line.split(' -> '))
         self.getmaprange()
+        self.sandrested=0
 
     
     def addpath(self, points: list):
@@ -25,13 +27,23 @@ class Cavesystem:
             lastx = px
             lasty = py
     
-    def addsand(self, startingpoint: tuple = (500,0)):
+    def addsand(self, startingpoint: tuple = (500,0), step2=False):
         x,y = startingpoint
         falling=True
         curpoint = startingpoint
         self.points[curpoint] = "+"
         while(falling):
             x,y = curpoint
+            if step2:
+                
+                self.points[x,self.maxY+2]='#'
+                self.points[x-1,self.maxY+2]='#'
+                self.points[x+1,self.maxY+2]='#'
+                
+                if x - 1 < self.minX:
+                    self.minX = x-1
+                if x > self.maxX:
+                    self.maxX = x + 1
             directions = {
                 "s":(x,y+1),
                 "sw":(x-1,y+1),
@@ -43,7 +55,7 @@ class Cavesystem:
                     self.points[directions[dir]] = "+"
                     self.points[curpoint] = "."
                     curpoint=directions[dir]
-                    #self.printmap()
+                    #self.printmap(step2)
                     #print("-"*10)
                     moved = True
                     break
@@ -52,20 +64,29 @@ class Cavesystem:
             x,y = curpoint
             
             # Check if we're outside the map area
-            if x < self.minX or x > self.maxX or y > self.maxY:
+            if not step2 and (x < self.minX or x > self.maxX or y > self.maxY):
                 return False
         self.points[curpoint] = "o"
-        #self.printmap()
+        self.sandrested+=1
+        if step2 and curpoint==(500,0):
+            return False
+        #self.printmap(step2)
         #print("-"*10)
         return True
             
-    def printmap(self):
-        for y in range(0, self.maxY+1):
+    def printmap(self, step2=False):
+        if step2:
+            rowrange=self.maxY+3
+        else:
+            rowrange=self.maxY+1
+            
+        for y in range(0, rowrange):
             line=""
             for x in range(self.minX,self.maxX+1):
                 p=(x,y)
                 line += self.points[p]
             print(line)
+        time.sleep(0.1)
 
     def getmaprange(self):
         coords = list(self.points.keys())
@@ -98,13 +119,16 @@ util = iu()
 
 lines = util.GetLines(file, test=False)
 cave = Cavesystem(lines)
+cave2 = Cavesystem(lines)
 
+while(cave.addsand(step2=False)):
+    pass
 
-#print(cave.points)
-#cave.printmap()
-#print("-"*10)
-sandadded = 0
-while(cave.addsand()):
-    sandadded += 1    
-print(sandadded)
+print(f"Step 1: {cave.sandrested}")
+
+while(cave2.addsand(step2=True)):
+    pass
+#cave2.printmap()
+
+print(f"Step 2: {cave2.sandrested}")
 
