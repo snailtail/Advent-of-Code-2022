@@ -1,84 +1,82 @@
 import time
 from aoc import inpututil as iu
 import os
-from collections import defaultdict
 import re
 
 class ExclusionZoneMap:
     
     def __init__(self, positiondata: list) -> None:
-        self.zonemap = defaultdict(lambda: '.')
-        self.minX, self.minY, self.maxX, self.maxY = 1000000, 1000000, 0, 0
+        self.sensors = set()
+        self.beacons = set()
+        
         for line in positiondata:
             matches = re.findall(r"([x-y]=(-?\d+))",line)
-            (xstring, sensorX),(ystring, sensorY),(bxstring,beaconX),(bystring,beaconY) = matches
+            (_, sensorX),(_, sensorY),(_,beaconX),(_,beaconY) = matches
             sensorX = int(sensorX)
             sensorY = int(sensorY)
             beaconX = int(beaconX)
             beaconY = int(beaconY)
-            self.zonemap[(sensorX,sensorY)] = 'S'
-            self.zonemap[(beaconX,beaconY)] = 'B'
-            # check using manhattandistance for empty ('.') points in the map that are closer than the beacon, and mark them as #
+            distance = abs(sensorX-beaconX) + abs(sensorY - beaconY)
+            # Save the sensors position and distance to it's nearest beacon
+            self.sensors.add((sensorX,sensorY,distance))
+            # Save the beacons separately
+            self.beacons.add((beaconX,beaconY))
             
-            # for test
-            #if sensorX == 8 and sensorY == 7
-            self.markEmptyPoints(sensorX,sensorY,beaconX,beaconY)
-            
-            self.update_mincoords(min(sensorX,beaconX),min(sensorY,beaconY),max(sensorX,beaconX),max(sensorY,beaconY))
-            #print(sensorX,sensorY,beaconX,beaconY)
+    def can_contain_beacon(self, x,y):
+        # A point on the map can't contain a beacon if it is <= the registered distance from any other sensor
+        # Go through all sensors, check the distance from this point to the sensor.
+        # If it is equal to or less than the distance registered for that sensor, then this point can't contain a beacon
+        for (sx,sy,d) in self.sensors:
+            dxy = abs(x-sx)+abs(y-sy)
+            if dxy<=d:
+                return False
+        return True
     
-    def getemptypoints(self,row):
-        count=0
-        for x in range(self.minX, self.maxX+1):
-            if self.zonemap[(x,row)]=='#':
-                count += 1
-        return count
+    def step1(self):
+        self.step1 = 0
+        for x in range(-int(6e6),int(6e6)):
+            y = int(2e6)
+            if not self.can_contain_beacon(x,y) and (x,y) not in self.beacons:
+                self.step1 += 1
     
-    def markEmptyPoints(self, sX, sY, bX, bY, importantrow=2000000):
-        distance = self.getdistance(sX,sY,bX,bY)
-        yrange = [importantrow] #range(sY-distance, sY+distance+1)
-        xrange = range(sX-distance, sX+distance+1)
-        for y in yrange:
-            for x in xrange:
-                if self.getdistance(sX,sY,x,y) <=distance:
-                    if self.zonemap[(x,y)]=='.':
-                        self.zonemap[(x,y)]='#'
-                        self.update_mincoords(x,y,x,y)
+    def step2(self):
+        self.step2 = 0
+        found = False
+        for (sensor_x,sensor_y,distance) in self.sensors:
+            # check all points that are 1 more than distance from (sensor_x,sensor_y)
+            for dx in range(distance+2):
+                dy = (distance+1)-dx
+                distance_checks = [(1,1),(-1,-1),(-1,1),(1,-1)]
+                for signal_x,signal_y in distance_checks:
+                    x = sensor_x+(dx*signal_x)
+                    y = sensor_y+(dy*signal_y)
+                    # Only possible within the defined square och 4x4 million points
+                    if not(0<=x<=4000000 and 0<=y<=4000000):
+                        continue
+                    if map.can_contain_beacon(x,y) and (not found):
+                        self.step2 = x*4000000 + y
+                        found = True
+                        return True
 
-    def getdistance(self, sx, sy, bx, by):
-        return abs(sx-bx) + abs(sy-by)
-    
-    def update_mincoords(self, minX, minY, maxX, maxY):
-        if minX < self.minX:
-            self.minX = minX
-        if minY < self.minY:
-            self.minY = minY
-        if maxX > self.maxX:
-            self.maxX = maxX
-        if maxY > self.maxY:
-            self.maxY = maxY
-            
-    def printmap(self, step2=False):
-        if step2:
-            pass
-        else:
-            pass
-        
-        for y in range(self.minY, self.maxY+1):
-            line=""
-            for x in range(self.minX,self.maxX+1):
-                p=(x,y)
-                line += self.zonemap[p]
-            print(line, y)
-        time.sleep(0.1)
 
+cold_start = time.time()
 file=os.path.basename(__file__).replace('.py','')
 util = iu()
 lines = util.GetLines(file, test=False)
 map = ExclusionZoneMap(lines)
-#map.printmap()
-print(map.getemptypoints(2000000))
-print(map.minX,map.minY)
+
+step1_start = time.time()
+map.step1()
+step1_complete = time.time()
+print(f"Step 1: {map.step1}")
 
 
+step2_start = time.time()
+map.step2()
+print(f"Step 2: {map.step2}")
+finish = time.time()
+
+print(f"Cold start to step1 start: {step1_start - cold_start}")
+print(f"Step1 start to step1 finish: {step1_complete - step1_start}")
+print(f"Step2 start to finish: {finish - step2_start}")
 
