@@ -50,4 +50,4 @@ In the end I spent a lot of time forgetting that multiplying a value by 0 doesn'
 
 - [- Day 14: Regolith Reservoir -](./14.md)
 Fun puzzle! Keep track of falling sand. Step 1 until the first grain of sand falls outside of the rock paths.  
-Step 2 might need some reworking of my code. But it will have to wait a while. Busy with moving to a new apartment, and some other stuff... :)
+Turns out Step 2 actually only needed an infinite rock floor below the rock paths, and then the rest was almost automatic.
