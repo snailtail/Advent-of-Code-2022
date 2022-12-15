@@ -111,11 +111,8 @@ class Cavesystem:
         self.maxY = maxy
             
 
-
 file=os.path.basename(__file__).replace('.py','')
 util = iu()
-
-
 
 lines = util.GetLines(file, test=False)
 cave = Cavesystem(lines)
@@ -131,4 +128,3 @@ while(cave2.addsand(step2=True)):
 #cave2.printmap()
 
 print(f"Step 2: {cave2.sandrested}")
-
