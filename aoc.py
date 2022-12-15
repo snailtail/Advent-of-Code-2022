@@ -123,9 +123,10 @@ class FourWayMap():
                 elif Direction=="w":
                     self.MoveLeft(Steps)
                     
-        def CalculateManhattanDistance(self, coord):
-            coordData = coord.split(":")
-            retX = abs(int(coordData[0]))
-            retY = abs(int(coordData[1]))
+        def CalculateManhattanDistance(self, coord1, coord2="0:0"):
+            coordData1 = coord1.split(":")
+            coordData2 = coord2.split(":")
+            retX = abs(int(coordData1[0]) - int(coordData2[0]))
+            retY = abs(int(coordData1[1]) - int(coordData2[1]))
             return retX + retY
-        #end
+        #endregion
