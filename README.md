@@ -54,7 +54,10 @@ Turns out Step 2 actually only needed an infinite rock floor below the rock path
 
 - [- Day 15: Beacon Exclusion Zone -](./15.md)
 Big grid. Step 1 was my lunch time exercise today, and was possible to do via "brute force". Step 2 however will need rethinking. There should be a better way. 
-So I was storing all the positions, as they were being checked. Which took a few minutes to run for step 1. But then when we had to perform checks on a square of 4 million x 4 million it would not have been practically possible to store that in memory, and would have taken a good long while to run through... a couple of days maybe?
+So I was storing all the positions, as they were being checked. Which took a few minutes to run for step 1. But then when we had to perform checks on a square of 4 million x 4 million it would not have been practically possible to store that in memory :dizzy_face:, and would have taken a good long while to run through... a couple of days maybe?
 So instead of storing everything as a grid, I store only the actual sensors and beacons. And use a method to check if a point on the grid is valid for containing a beacon or not. That took the runtime for step 1 down from roughly 4 minutes to about 30 seconds by tuning the ranges a bit.
 Step 2 was a nightmare, and I had to ask for advice - I was pretty close to giving up.  
-The main key to solving step 2 (for me) was finding out that the beacon we search for has to be distance+1 from one of a sensor - and be a valid point.
+The main key to solving step 2 (for me) was finding out that the beacon we search for has to be distance+1 from one of a sensor - and be a valid point. :signal_strength:
+
+- [- Day 16: Proboscidea Volcanium -](./16.md)
+Evacuate elephants :elephant: from a volcano :volcano:, using pressure release valves building the most pressure possible within a 30 minute time window. Just your typical friday in december eh? :satisfied:
