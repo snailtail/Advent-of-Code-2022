@@ -16,14 +16,14 @@ class Tetris:
         self.moves = []
         self.checkpoints = []
         self.moves_made=0
-        self.load_moves()
+        #self.load_moves()
 
-    def load_moves(self):
+    def load_moves(self, TestMode:bool = True):
         
         ## gör om moves till en lista och använd modulo för att loopa runt listan med moves...
         
-        data = util.GetContents(file, test=True)
-        self.moves = list(data)
+        data = util.GetContents(file, test=TestMode)
+        self.moves = [x.strip() for x in data]
         self.checkpoints = [int(x.rstrip()) for x in util.GetLines('17chk',False)]
 
     def append_empty_row(self):
@@ -31,7 +31,7 @@ class Tetris:
 
     def play_shape(self, shapenum: int):
         # append top lines if needed
-        print(shapenum, end="")
+        #print(shapenum, end="")
         shapenum = shapenum % 5
         shape = self.shapes[shapenum]
         while self.highground + (3 + len(shape)) > (len(self.tetrismap)-1):
@@ -58,10 +58,12 @@ class Tetris:
                 if self.can_move_right(shape,topY, topX):
                     self.move_right(shape,topY,topX)
                     topX += 1
-            else:
+            elif move =='<':
                 if self.can_move_left(shape,topY, topX):
                     self.move_left(shape,topY,topX)
                     topX -= 1
+            else:
+                print(f"Incorrect move input: {move}")
             #move 1 step down if possible
             if self.can_move_down(shape, topY, topX):
                 self.move_down(shape, topY, topX)
@@ -73,7 +75,7 @@ class Tetris:
                     
                 #assert self.highground == self.checkpoints[self.rocks_stopped]
                 self.rocks_stopped += 1
-                print(f" : {topY}")
+                #print(f" : {topY}")
                 return False
             
 
@@ -86,14 +88,14 @@ class Tetris:
                     self.tetrismap[top_y-row][top_x+col] = '.'
 
     def can_move_down(self, shape: list, top_y: int, top_x: int):
+        if top_y - (len(shape)) - 1 < 0:
+            return False
+        
         # för varje kolumn i shape:
         for col in range(len(shape[0])):
             #  för varje rad i shape - baklänges
             for row in range(len(shape)-1,-1,-1):
-                # om vi slår i botten
-                if top_y - row - 1 <=0:
-                    return False
-                elif shape[row][col] == '#':
+                if shape[row][col] == '#':
                     if self.tetrismap[top_y - row - 1][top_x + col] == '#':
                         return False
                     else:
@@ -168,25 +170,22 @@ class Tetris:
         for n in range(len(self.tetrismap)-1,-1,-1):
             print(''.join(self.tetrismap[n]), end="")
             print(f" {n}")
-
-    def get_step1_result(self):    
-        for row in range(len(self.tetrismap)-1, -1, -1):
-            for cell in range(len(self.tetrismap[row])):
-                if self.tetrismap[row][cell]=='#':
-                    return row + 1
                 
 
 file=os.path.basename(__file__).replace('.py','')
 util = iu()
 
 
-game = Tetris()
-game.create_shapes()
-for n in range(0, 2023):
-    game.play_shape(n)
+testgame = Tetris()
+realgame = Tetris()
+testgame.create_shapes()
+realgame.create_shapes()
+testgame.load_moves(TestMode=True)
+realgame.load_moves(TestMode=False)
+for n in range(2022):
+    testgame.play_shape(n)
+    realgame.play_shape(n)
     #game.print_map()
 
-#game.print_map()
-print(game.get_step1_result())
-print(game.highground)
-print(max(game.rocktops))
+print(max(testgame.rocktops))
+print(max(realgame.rocktops))
