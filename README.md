@@ -65,3 +65,4 @@ Evacuate elephants :elephant: from a volcano :volcano:, using pressure release v
 - [- Day 17: Pyroclastic Flow -](./day17.md)
 It's Tetris time! :video_game:  
 Let's give this a shot then.
+Ohkay.. that was surprisingly difficult. I played around with this all day, and was apparently a little bit off all the time for the real input, but everything worked fine for the test input. :confused: I'm still not sure what the problem is that makes up that difference between running with test and real input. 
