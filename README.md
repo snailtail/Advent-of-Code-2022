@@ -60,4 +60,4 @@ Step 2 was a nightmare, and I had to ask for advice - I was pretty close to givi
 The main key to solving step 2 (for me) was finding out that the beacon we search for has to be distance+1 from one of a sensor - and be a valid point. :signal_strength:
 
 - [- Day 16: Proboscidea Volcanium -](./16.md)
-Evacuate elephants :elephant: from a volcano :volcano:, using pressure release valves building the most pressure possible within a 30 minute time window. Just your typical friday in december eh? :satisfied:
+Evacuate elephants :elephant: from a volcano :volcano:, using pressure release valves building the most pressure possible within a 30 minute time window. Just your typical friday in december eh? :satisfied: Yeah so I gave up on this day... :)
