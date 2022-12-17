@@ -61,3 +61,7 @@ The main key to solving step 2 (for me) was finding out that the beacon we searc
 
 - [- Day 16: Proboscidea Volcanium -](./16.md)
 Evacuate elephants :elephant: from a volcano :volcano:, using pressure release valves building the most pressure possible within a 30 minute time window. Just your typical friday in december eh? :satisfied: Yeah so I gave up on this day... :)
+
+- [- Day 17: Pyroclastic Flow -](./day17.md)
+It's Tetris time! :video_game:  
+Let's give this a shot then.
