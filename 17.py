@@ -187,5 +187,6 @@ for n in range(2022):
     realgame.play_shape(n)
     #game.print_map()
 
-print(max(testgame.rocktops))
-print(max(realgame.rocktops))
+
+sortresult = sorted(realgame.rocktops,reverse=True)
+print(sortresult[5]-1)
