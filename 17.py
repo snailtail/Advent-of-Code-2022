@@ -8,22 +8,30 @@ import os
 # (or the bottom if there are no rocks)
 class Tetris:
     def __init__(self) -> None:
+        self.rocktops = set()
+        self.rocks_stopped=0
         self.highground = 0
         self.tetrismap = [['-','-','-','-','-','-','-'],['.','.','.','.','.','.','.'],['.','.','.','.','.','.','.'],['.','.','.','.','.','.','.']]
         self.shapes = []
-        self.moves = deque()
+        self.moves = []
+        self.checkpoints = []
+        self.moves_made=0
+        self.load_moves()
 
     def load_moves(self):
+        
+        ## gör om moves till en lista och använd modulo för att loopa runt listan med moves...
+        
         data = util.GetContents(file, test=True)
-        data = list(data)
-        for move in data:
-            self.moves.append(move)
+        self.moves = list(data)
+        self.checkpoints = [int(x.rstrip()) for x in util.GetLines('17chk',False)]
 
     def append_empty_row(self):
         self.tetrismap.append(['.','.','.','.','.','.','.'])
 
     def play_shape(self, shapenum: int):
         # append top lines if needed
+        print(shapenum, end="")
         shapenum = shapenum % 5
         shape = self.shapes[shapenum]
         while self.highground + (3 + len(shape)) > (len(self.tetrismap)-1):
@@ -42,10 +50,10 @@ class Tetris:
                 self.tetrismap[topY - row][col+topX] = shape[row][col]
         
         # now we need to move the shape first according to the move, and then down until it touches something
-        while topY-len(shape) >= 0:
-            if len(self.moves)==0:
-                self.load_moves()
-            move = self.moves.popleft()
+        while True:
+            movetomake= self.moves_made % len(self.moves)
+            move = self.moves[movetomake]
+            self.moves_made += 1
             if move=='>':
                 if self.can_move_right(shape,topY, topX):
                     self.move_right(shape,topY,topX)
@@ -59,8 +67,15 @@ class Tetris:
                 self.move_down(shape, topY, topX)
                 topY -=1
             else:
-                self.highground=topY
+                self.rocktops.add(topY)
+                if topY > self.highground:
+                    self.highground = topY
+                    
+                #assert self.highground == self.checkpoints[self.rocks_stopped]
+                self.rocks_stopped += 1
+                print(f" : {topY}")
                 return False
+            
 
     def move_down(self, shape: list, top_y: int, top_x: int):
         for col in range(len(shape[0])):
@@ -158,7 +173,7 @@ class Tetris:
         for row in range(len(self.tetrismap)-1, -1, -1):
             for cell in range(len(self.tetrismap[row])):
                 if self.tetrismap[row][cell]=='#':
-                    return row +1
+                    return row + 1
                 
 
 file=os.path.basename(__file__).replace('.py','')
@@ -167,11 +182,11 @@ util = iu()
 
 game = Tetris()
 game.create_shapes()
-game.print_map()
 for n in range(0, 2023):
     game.play_shape(n)
     #game.print_map()
 
-game.print_map()
+#game.print_map()
 print(game.get_step1_result())
 print(game.highground)
+print(max(game.rocktops))
