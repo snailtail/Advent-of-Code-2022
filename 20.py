@@ -13,11 +13,7 @@ while len(todo) > 0:
     movethis = todo.popleft()
     #print(f"{movethis} : {iarr}")
     index = iarr.index(movethis)
-    newindex = abs((index + movethis) % (len(iarr)))-1
-    if newindex ==0:
-        newindex = len(iarr)-1
-    elif newindex == len(iarr)-1:
-        newindex = 0
+    newindex = abs((index + movethis) % (len(iarr)))
     
     #print(index, movethis, newindex)s
     if movethis != 0:
@@ -33,7 +29,3 @@ groove3 = iarr[(zeroindex + 3000) % (len(iarr))]
 
 print(groove1+groove2+groove3)
 
-# -6274 är fel
-# -2735
-# -8876
-# 13208 är too high
